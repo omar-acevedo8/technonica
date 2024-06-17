@@ -3,7 +3,7 @@
 	class Connection{
 
        public static function Connect(){
-        //$server="localhost";
+        $server="localhost";
         //$database="techno";
         //$user="root";
         //$password="";
