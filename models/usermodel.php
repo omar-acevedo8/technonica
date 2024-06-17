@@ -2,7 +2,7 @@
 
 class userModel{
 
-    public static $table='Usuario';
+    public static $table='usuario';
 
     public static function All(){
 
