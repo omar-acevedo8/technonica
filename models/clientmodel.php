@@ -2,7 +2,7 @@
 
 class clientModel{
 
-    public static $table='Cliente';
+    public static $table='cliente';
 
     public static function All(){
 

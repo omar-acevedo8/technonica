@@ -131,7 +131,7 @@ $(document).ready(function(){
     });
 
     $('#datepicker').datepicker({
-            uiLibrary: 'bootstrap4'l
+            uiLibrary: 'bootstrap4'
     });
 
     $("#cliente").append(

@@ -70,10 +70,16 @@ if(isset($_POST['descripcion'])){
             <label>Factura</label>
             <input type="text" class="form-control" id="factura"  name="factura">
         </div>
+
         <div class="form-group col-3">
-          <label>Fecha</label>
-          <input type="text" class="form-control" id="fecha"  name="fecha" >
-      </div>
+           <label>Fecha</label>
+           <div class="input-group">
+           <input id="datepicker" width="276" /> 
+           </div>
+        </div>
+
+
+       
     </div>
     <div class="row">
 
@@ -131,9 +137,8 @@ $(document).ready(function(){
      theme: 'bootstrap4'
     });
 
-    $('#fecha').datepicker({
-      autoclose: true,
-      format: 'yyyy-mm-dd'
+    $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
     });
 });
 </script>

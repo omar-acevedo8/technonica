@@ -76,10 +76,15 @@ $result=productController::find($_POST['id']);
             <label>Factura</label>
             <input type="text" class="form-control" id="factura"  name="factura" value="<?php echo $result['Factura']?>">
         </div>
+        
         <div class="form-group col-3">
-          <label>Fecha</label>
-          <input type="text" class="form-control" id="fecha"  name="fecha" value="<?php echo $result['Fecha']?>">
-      </div>
+           <label>Fecha</label>
+           <div class="input-group">
+           <input id="datepicker" width="276"  value="<?php echo $result['Fecha']?>"/> 
+           </div>
+        </div>
+
+
     </div>
     <div class="row">
 
@@ -139,9 +144,8 @@ $(document).ready(function(){
      theme: 'bootstrap4'
     });
 
-    $('#fecha').datepicker({
-      autoclose: true,
-      format: 'yyyy-mm-dd'
+    $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
     });
 });
 </script>

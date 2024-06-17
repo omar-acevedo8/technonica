@@ -10,7 +10,7 @@
 
   <div class="card card-lightblue card-outline">
     <div class="card-header">
-      <h6 class="m-0 font-weight-bold">LISTA DE USUARIOS <a class="btn bg-lightblue" href="adduser" >Agregar usuario</a></h6>
+      <h5 class="m-0 font-weight-bold">Usuarios <a class="btn btn-primary" href="adduser" >Agregar usuario</a></h5>
     </div>
     <div class="card-body">
 

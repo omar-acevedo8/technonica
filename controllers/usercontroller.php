@@ -17,7 +17,7 @@ class userController{
                 $_SESSION["nombre"]=$result['Mostrar'];
                 $_SESSION["rol"]=$result['Rol'];
 
-                echo '<script> window.location="index.php"</script>';
+                echo '<script> window.location="dashboard"</script>';
             }
              else{
                 echo '<br><div class="alert alert-danger">Usuario o contraseña Incorrectos, Intentelo de nuevo</div>';
