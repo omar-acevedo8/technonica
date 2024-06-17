@@ -1,4 +1,5 @@
 <br>
+
 <section class="content">
 <div class="container-fluid">
 
@@ -130,7 +131,7 @@ $(document).ready(function(){
     });
 
     $('#datepicker').datepicker({
-            uiLibrary: 'bootstrap4'
+            uiLibrary: 'bootstrap4'l
     });
 
     $("#cliente").append(
