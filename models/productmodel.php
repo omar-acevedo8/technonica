@@ -6,19 +6,11 @@ class productModel{
         
         $sql="INSERT INTO producto(
             Descripcion,
-            Serie,
-            Costo,
-            Precio,
-            Gastos,
-            Proveedor,
-            Factura,
-            Fecha,
-            Iva,
-            Activo,
-            Facturado
-            ) VALUES (?,?,?,?,?,?,?,?,?,?)";
+            Serie
+            
+            ) VALUES (?,?)";
 
-        unset($data['Activo']);
+       // unset($data['Activo']);
 
         $cn=Connection::connect();
         $stmt=$cn->prepare($sql);
