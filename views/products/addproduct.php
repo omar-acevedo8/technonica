@@ -8,8 +8,7 @@ $proveedores=providerController::All();
 if(isset($_POST['descripcion'])){
 
    $result= productController::create();
-   print_r($result);
-    //echo '<script>location.href="products"</script>';
+   echo '<script>location.href="products"</script>';
 }
 
 ?>
@@ -35,21 +34,20 @@ if(isset($_POST['descripcion'])){
 <section class="content">
 
 <div class="card card-outline card-primary">
-<!--<div class="card-header">
-<h3 class="card-title"></h3>
+<div class="card-header">
+    <h3 class="card-title font-weight-bold">Agregar producto</h3>
 
 
-<div class="card-tools">
+<!--<div class="card-tools">
 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
 <i class="fas fa-minus"></i>
 </button>
 <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
 <i class="fas fa-times"></i>
 </button>
-</div>
+</div>-->
 
 </div>
--->
 <div class="card-body">
 
     <form action="addproduct" method="post">
@@ -105,7 +103,12 @@ if(isset($_POST['descripcion'])){
         </div>
         <div class="form-group col-md-3">
             <label>Iva</label><br>
-            <input class="form-control" type="checkbox" name="iva" checked="true">
+            <?php if($result['Iva']>0){
+                echo '<input class="form-control" type="checkbox" name="iva" checked="true">';
+            }
+            else{
+                echo '<input class="form-control" type="checkbox" name="iva">';
+            }?>
         </div>
     </div>
 
@@ -123,7 +126,13 @@ if(isset($_POST['descripcion'])){
 
         <div class="form-group col-md-3">
             <label>Activo</label><br>
-            <input class="form-control" type="checkbox" name="activo">
+            <?php if($result['Activo']){
+                echo '<input class="form-control" type="checkbox" name="activo" checked="true">';
+            }
+            else{
+                echo '<input class="form-control" type="checkbox" name="activo">';
+            }
+            ?>
         </div>
     </div>
       
