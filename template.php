@@ -89,9 +89,8 @@
 
 <?php
 
+   date_default_timezone_set('America/Managua');
    include "./views/menu.php";
-  
-
 ?>
 
 <div class="content-wrapper">

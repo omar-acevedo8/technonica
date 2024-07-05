@@ -1,3 +1,11 @@
+
+<?php
+    require_once "./models/invoicemodel.php";
+    require_once "./controllers/invoicecontroller.php";
+
+    $values=invoiceController::obtenerFacturas();
+?>
+
 <br>
 <section class="content">
 <div class="container-fluid">
@@ -21,6 +29,25 @@
                       </tr>
                   </thead>
                     <tbody>
+
+                  <?php
+
+                  foreach($values as $value){
+                    echo "<tr>
+                            <td>{$value['Factura']}</td>
+                            <td>{$value['Fecha']}</td>
+                            <td>{$value['Cliente']}</td>
+                            <td>{$value['SubTotal']}</td>
+                            <td>{$value['Iva']}</td>
+                            <td>{$value['Total']}</td>
+                            <th>
+                            <center>
+                                <button class='btn btn-danger btn-sm'>Anular</button>
+                            </center>
+                            </th>
+                          </tr>";
+                    }
+                    ?>
                     </tbody>
                   </table>
 
