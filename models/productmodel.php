@@ -16,7 +16,9 @@ class productModel{
             Iva,
             Activo,
             Facturado
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+            ) VALUES (?,?,?,?,?,?,?,?,?,{$data['Activo']},?)";
+
+        unset($data['Activo']);
 
         $cn=Connection::connect();
         $stmt=$cn->prepare($sql);
