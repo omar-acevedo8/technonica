@@ -61,6 +61,14 @@ class productModel{
         }
     }
 
+    public static function obtenerProductoActivo(){
+
+        $result= Model::getBySql("SELECT *
+                            FROM producto 
+                            WHERE Activo=true AND Facturado=false");
+        return $result;
+    }
+
 
 
 

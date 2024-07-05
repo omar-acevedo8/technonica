@@ -56,4 +56,13 @@ if(isset($_POST["endpoint"]) &&  $_POST["endpoint"]=="eliminarProducto"){
 }
 
 
+if(isset($_POST["endpoint"]) &&  $_POST["endpoint"]=="obtenerProducto"){
+    
+    $result= Model::getBySql("SELECT *
+                            FROM producto 
+                            WHERE Id={$_POST['id']} AND Activo=1 AND Facturado=False");
+    echo json_encode($result[0]);
+}
+
+
 ?>

@@ -1,3 +1,9 @@
+<?php
+
+require_once "./controllers/clientcontroller.php";
+require_once "./controllers/productcontroller.php";
+?>
+
 <br>
 
 <section class="content">
@@ -16,7 +22,13 @@
           <div class="input-group">
         
           <select id="cliente" class="custom-select" id="cliente" >
-            
+          <?php
+            $values=clientController::All();
+            print_r($values);
+            foreach($values as $value){
+              echo "<option value={$value['Id']}>{$value['Nombre']}</option>";
+            }
+          ?>
           </select>
           
           </div>
@@ -51,10 +63,13 @@
         <label >Seleccione un producto</label>
         <div class="input-group">
         
-          <select id="producto" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-            <option selected>Computadora de escritorio</option>
-            <option value="1">Laptop</option>
-            <option value="2">Impresora/option>
+          <select id="producto" class="custom-select" >
+          <?php
+            $values=productController::obtenerProductoActivo();
+            foreach($values as $value){
+              echo "<option value={$value['Id']}>{$value['Descripcion']}</option>";
+            }
+          ?>
           </select>
           <div class="input-group-append">
             <button id="agregarProducto" class="btn bg-lightblue btn-sm" type="button"><i class="fas fa-plus"></i></button>
@@ -76,7 +91,7 @@
                         <th>Descripcion</th>
                         <th>Precio C$</th>
                         <th>Precio $</th>
-                        <th>Total</th>
+                        <th>Total C$</th>
                     </tr>
                 </thead>
                 <tbody id="detalle">
@@ -134,12 +149,6 @@ $(document).ready(function(){
             uiLibrary: 'bootstrap4'
     });
 
-    $("#cliente").append(
-      ` <option selected>Eventual</option>
-            <option value="1">Omar Acevedo</option>
-            <option value="2">Arelys Corea</option>`
-    );
-
 });
 
 function getTotal(){
@@ -158,47 +167,60 @@ let total=0;
 
 $("#agregarProducto").on("click",function(){
 
-$("#detalle").append(
-   `<tr>
-    <td name="boton">
-      <button class="btn btn-danger btn-sm quitar">
-        <i class="fas fa-trash"></i>
-      </button>
-    </td>
-    <td> 
+  let id=$("#producto option:selected").val();
 
-      <center>
-        <div class="input-group" style="width:120px">
-            <button class="btn btn-secondary btn-sm restar" type="button">-</button>
-            <input type="text" class="form-control qty" value="1" readonly >  
-            <button class="btn btn-secondary btn-sm sumar" type="button">+</button>
-        </div>
-      </center>
+  $.ajax({
 
-    </td>
-    <td name="Descripcion" >Computadora de escritorio</td>
-    <td name="Precio" class="precio">
+      url: "./ajax/ajax.php",
+      method: "POST",
+      data: {"id": id, "endpoint" : "obtenerProducto"},
+      dataType: "json",
+      success: function(response){
+        console.log(response);
+        $("#detalle").append(
+              `<tr>
+              <td name="boton">
+                <button class="btn btn-danger btn-sm quitar">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+              <td> 
 
-      <span>$</span>
-      <span class="pd">550<span>
+                <center>
+                  <div class="input-group" style="width:120px">
+                      <button class="btn btn-secondary btn-sm restar" type="button">-</button>
+                      <input type="text" class="form-control qty" value="1" readonly >  
+                      <button class="btn btn-secondary btn-sm sumar" type="button">+</button>
+                  </div>
+                </center>
 
-    </td>
-    <td name="Precio" class="precio">
+              </td>
+              <td name="Descripcion" >${response.Descripcion}</td>
+              <td name="Precio" class="precio">
 
-      <span>C$</span>
-      <span class="p">550<span>
+                <span>$</span>
+                <span class="pd">${response.Precio}<span>
 
-    </td>
-    <td name="Total" class="total">
+              </td>
+              <td name="Precio" class="precio">
 
-      <span>$</span>
-      <span class="t">550<span>
+                <span>C$</span>
+                <span class="p">${response.Precio * 36.62}<span>
 
-    </td>
-    </tr> `
-);
+              </td>
+              <td name="Total" class="total">
 
-getTotal();
+                <span>$</span>
+                <span class="t">${response.Precio * 36.62}<span>
+
+              </td>
+              </tr> `
+          );
+
+      getTotal();
+      }
+
+  });
 
 });
 

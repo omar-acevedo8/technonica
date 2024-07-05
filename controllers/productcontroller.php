@@ -84,6 +84,11 @@ class productController{
       
     }
 
+
+    public static function obtenerProductoActivo(){
+        return productModel::obtenerProductoActivo();
+    }
+
     public static function All(){
 
         return productModel::All();
