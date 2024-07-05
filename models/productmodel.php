@@ -10,7 +10,7 @@ class productModel{
             Costo,
             Precio,
             Gastos,
-            Proveedor,
+            Proveedor
             
             ) VALUES (?,?,?,?,?,?)";
 
