@@ -45,10 +45,10 @@ require_once "./controllers/productcontroller.php";
 
        
 
-        <div class="form-group col-md-2">
+        <div id="vencimiento" class="form-group col-md-2">
            <label>Vencimiento</label>
            <div class="input-group">
-            <input id="datepicker" width="276" />  
+            <input id="datepicker" width="276">  
            </div>
         </div>
 
@@ -89,8 +89,8 @@ require_once "./controllers/productcontroller.php";
                         <th width="100px"></th>
                         <th width="300px">Cantidad</th>
                         <th>Descripcion</th>
-                        <th>Precio C$</th>
                         <th>Precio $</th>
+                        <th>Precio C$</th>
                         <th>Total C$</th>
                     </tr>
                 </thead>
@@ -126,7 +126,7 @@ require_once "./controllers/productcontroller.php";
     </div>
     <div class="card-footer">
       <button class="btn bg-primary" id="guardar"> Guardar</button>
-      <button class="btn btn-danger"> Cancelar</button>
+      <a href='invoices' class="btn btn-danger"> Cancelar</a>
     </div>
 </div>
     
@@ -148,6 +148,8 @@ $(document).ready(function(){
     $('#datepicker').datepicker({
             uiLibrary: 'bootstrap4'
     });
+
+    $('#vencimiento').hide();
 
 });
 
@@ -176,7 +178,7 @@ $("#agregarProducto").on("click",function(){
       data: {"id": id, "endpoint" : "obtenerProducto"},
       dataType: "json",
       success: function(response){
-        console.log(response);
+        
         $("#detalle").append(
               `<tr>
               <td name="boton">
@@ -205,13 +207,13 @@ $("#agregarProducto").on("click",function(){
               <td name="Precio" class="precio">
 
                 <span>C$</span>
-                <span class="p">${response.Precio * 36.62}<span>
+                <span class="p">${(response.Precio * 36.62).toFixed(2)}<span>
 
               </td>
               <td name="Total" class="total">
 
-                <span>$</span>
-                <span class="t">${response.Precio * 36.62}<span>
+                <span>C$</span>
+                <span class="t">${(response.Precio * 36.62).toFixed(2)}<span>
 
               </td>
               </tr> `
@@ -235,7 +237,7 @@ function setUnitPrice(qty,element){
 
 let price=element.parent().parent().siblings(".precio").find('.p').text();
 let tmp=element.parent().parent().siblings(".total");
-tmp.find('.t').text(parseFloat(qty)*parseFloat(price));
+tmp.find('.t').text((parseFloat(qty)*parseFloat(price)).toFixed(2));
 
 }
 
@@ -259,6 +261,19 @@ $("#detalle").on("click","button.sumar",function(){
   setUnitPrice(parseFloat(qty),$(this).parent());
 
   getTotal();
+});
+
+
+
+$('#tipo').change(function(){
+
+    if($('#tipo option:selected').val()=='Contado'){
+      $('#vencimiento').hide();
+    } 
+    else{
+      $('#vencimiento').show();
+    }
+
 });
 
 

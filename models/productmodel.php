@@ -69,9 +69,7 @@ class productModel{
         return $result;
     }
 
-
-
-
+    
     public static $table='producto';
 
     public static function All(){
