@@ -41,8 +41,8 @@ class productController{
             "Iva"=>$iva,
             "Activo"=>$activo
         );
-        return $data;
-        //return productModel::guardarProducto($data);
+       
+        return productModel::guardarProducto($data);
     }
 
      public static function update(){
