@@ -45,10 +45,11 @@ class productModel{
             Facturado=?
             WHERE Id={$id}";
 
-            $data['Activo']=$data['Activo']? 1 : 0;
-
         $cn=Connection::connect();
         $stmt=$cn->prepare($sql);
+
+        $stmt->bindValue(10, $data['Activo'], PDO::PARAM_INT);
+        unset($data['Activo']);
 
         if($stmt -> execute(array_values($data))){ 
             return 'ok';
