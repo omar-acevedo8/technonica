@@ -57,9 +57,9 @@ class productController{
         }
 
         if(isset($_POST['activo'])){
-            $activo=true;
+            $activo=1;
         }else{
-            $activo=false;
+            $activo=0;
         }
 
         //$fecha= DateTime::createFromFormat('m/d/Y', $_POST['fecha'])->format('Y-m-d');
