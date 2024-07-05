@@ -14,10 +14,11 @@ class productModel{
             Factura,
             Fecha,
             Iva,
-            Activo
-            ) VALUES (?,?,?,?,?,?,?,?,?,1)";
+            Activo,
+            Facturado
+            ) VALUES (?,?,?,?,?,?,?,?,?,1,?)";
 
-        //unset($data['Activo']);
+        unset($data['Activo']);
 
         $cn=Connection::connect();
         $stmt=$cn->prepare($sql);
