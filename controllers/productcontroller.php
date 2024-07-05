@@ -39,7 +39,8 @@ class productController{
             "Factura"=>$_POST['factura'],
             "Fecha"=>$_POST['fecha'],
             "Iva"=>$iva,
-            "Activo"=>$activo
+            "Activo"=>$activo,
+            "Facturado"=>false
         );
        
         return productModel::guardarProducto($data);
