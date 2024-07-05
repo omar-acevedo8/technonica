@@ -5,8 +5,9 @@ require_once "./controllers/providercontroller.php";
 
 if(isset($_POST['id'])){
 
-    productController::update();
-    echo '<script>location.href="products"</script>';
+    $result=productController::update();
+    print_r($result);
+    //echo '<script>location.href="products"</script>';
 }
 
 $proveedores=providerController::All();
