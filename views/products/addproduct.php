@@ -103,12 +103,9 @@ if(isset($_POST['descripcion'])){
         </div>
         <div class="form-group col-md-3">
             <label>Iva</label><br>
-            <?php if($result['Iva']>0){
-                echo '<input class="form-control" type="checkbox" name="iva" checked="true">';
-            }
-            else{
-                echo '<input class="form-control" type="checkbox" name="iva">';
-            }?>
+            
+               <input class="form-control" type="checkbox" name="iva" checked="true">
+           
         </div>
     </div>
 
@@ -126,13 +123,8 @@ if(isset($_POST['descripcion'])){
 
         <div class="form-group col-md-3">
             <label>Activo</label><br>
-            <?php if($result['Activo']){
-                echo '<input class="form-control" type="checkbox" name="activo" checked="true">';
-            }
-            else{
-                echo '<input class="form-control" type="checkbox" name="activo">';
-            }
-            ?>
+              <input class="form-control" type="checkbox" name="activo">
+          
         </div>
     </div>
       
