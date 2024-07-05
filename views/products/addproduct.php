@@ -8,7 +8,8 @@ $proveedores=providerController::All();
 if(isset($_POST['descripcion'])){
 
    $result= productController::create();
-   echo '<script>location.href="products"</script>';
+   print_r($result);
+   //echo '<script>location.href="products"</script>';
 }
 
 ?>

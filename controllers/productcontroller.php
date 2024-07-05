@@ -29,8 +29,6 @@ class productController{
             $activo=0;
         }
 
-       // $fecha= DateTime::createFromFormat('m/d/Y', $_POST['fecha'])->format('Y-m-d');
-      
         $data=array(
             "Descripcion"=>$_POST['descripcion'],
             "Serie"=>$_POST['serie'],
@@ -39,13 +37,13 @@ class productController{
             "Gastos"=>$_POST['gastos'],
             "Proveedor"=>$_POST['proveedor'],
             "Factura"=>$_POST['factura'],
-            "Fecha"=>$_POST['fecha'],//$fecha,
+            "Fecha"=>$_POST['fecha'],
             "Iva"=>$iva,
             "Activo"=>$activo,
             "Facturado"=>false
         );
-    
-        return productModel::guardarProducto($data);
+        return $data;
+        //return productModel::guardarProducto($data);
     }
 
      public static function update(){
