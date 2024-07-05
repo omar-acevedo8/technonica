@@ -6,9 +6,13 @@ class productModel{
         
         $sql="INSERT INTO producto(
             Descripcion,
-            Serie
+            Serie,
+            Costo,
+            Precio,
+            Gastos,
+            Proveedor,
             
-            ) VALUES (?,?)";
+            ) VALUES (?,?,?,?,?,?)";
 
        // unset($data['Activo']);
 

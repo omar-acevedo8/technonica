@@ -31,8 +31,11 @@ class productController{
 
         $data=array(
             "Descripcion"=>$_POST['descripcion'],
-            "Serie"=>$_POST['serie']
-           
+            "Serie"=>$_POST['serie'],
+            "Costo"=>$_POST['costo'],
+            "Precio"=>$_POST['precio'],
+            "Gastos"=>$_POST['gastos'],
+            "Proveedor"=>$_POST['proveedor']
         );
        
         return productModel::guardarProducto($data);
