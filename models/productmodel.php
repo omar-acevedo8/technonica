@@ -45,6 +45,8 @@ class productModel{
             Facturado=?
             WHERE Id={$id}";
 
+            $data['Activo']=$data['Activo']? 1 : 0;
+
         $cn=Connection::connect();
         $stmt=$cn->prepare($sql);
 
