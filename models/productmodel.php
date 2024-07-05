@@ -15,7 +15,7 @@ class productModel{
             Fecha,
             Iva,
             Activo
-            ) VALUES (?,?,?,?,?,?,?,?,?,{$data['Activo']})";
+            ) VALUES (?,?,?,?,?,?,?,?,?,0)";
 
         unset($data['Activo']);
 
