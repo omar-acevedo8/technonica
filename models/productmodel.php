@@ -10,11 +10,16 @@ class productModel{
             Costo,
             Precio,
             Gastos,
-            Proveedor
-            
-            ) VALUES (?,?,?,?,?,?)";
+            Proveedor,
+            Factura,
+            Fecha,
+            Iva,
+            Activo,
+            Facturado
+            ) VALUES (?,?,?,?,?,?,?,?,?,{$data['Activo']},?)";
 
-       // unset($data['Activo']);
+        unset($data['Activo']);
+
 
         $cn=Connection::connect();
         $stmt=$cn->prepare($sql);

@@ -39,7 +39,12 @@ class productController{
             "Costo"=>$_POST['costo'],
             "Precio"=>$precio,
             "Gastos"=>$gastos,
-            "Proveedor"=>$_POST['proveedor']
+            "Proveedor"=>$_POST['proveedor'],
+            "Factura"=>$_POST['factura'],
+            "Fecha"=>$_POST['fecha'],
+            "Iva"=>$iva,
+            "Activo"=>$activo,
+            "Facturado"=>false
         );
        
         return productModel::guardarProducto($data);
