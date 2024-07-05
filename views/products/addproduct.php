@@ -151,7 +151,8 @@ $(document).ready(function(){
     });
 
     $('#datepicker').datepicker({
-            uiLibrary: 'bootstrap4'
+            uiLibrary: 'bootstrap4',
+            format: 'yyyy-mm-dd'
     });
 });
 
