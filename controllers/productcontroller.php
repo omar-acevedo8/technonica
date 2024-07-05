@@ -29,8 +29,8 @@ class productController{
             $activo=0;
         }
 
-        $_POST['precio']==null ? $precio=$_POST['precio'] : $precio=0;  
-        $_POST['gastos']==null ? $gastos=$_POST['gastos'] : $gastos=0;
+        $_POST['precio']=='' ? $precio=$_POST['precio'] : $precio=0;  
+        $_POST['gastos']=='' ? $gastos=$_POST['gastos'] : $gastos=0;
         
 
         $data=array(
