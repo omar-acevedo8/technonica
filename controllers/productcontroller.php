@@ -29,12 +29,16 @@ class productController{
             $activo=0;
         }
 
+        isset($_POST['precio']) ? $precio=$_POST['precio'] : $precio=0;  
+        isset($_POST['gastos']) ? $gastos=$_POST['gastos'] : $gastos=0;
+        
+
         $data=array(
             "Descripcion"=>$_POST['descripcion'],
             "Serie"=>$_POST['serie'],
             "Costo"=>$_POST['costo'],
-            "Precio"=>$_POST['precio'],
-            "Gastos"=>$_POST['gastos'],
+            "Precio"=>$precio,
+            "Gastos"=>$gastos,
             "Proveedor"=>$_POST['proveedor']
         );
        
