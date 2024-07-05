@@ -29,7 +29,7 @@ class productController{
             $activo=false;
         }
 
-        $fecha= DateTime::createFromFormat('m/d/Y', $_POST['fecha'])->format('Y-m-d');
+       // $fecha= DateTime::createFromFormat('m/d/Y', $_POST['fecha'])->format('Y-m-d');
       
         $data=array(
             "Descripcion"=>$_POST['descripcion'],
@@ -39,7 +39,7 @@ class productController{
             "Gastos"=>$_POST['gastos'],
             "Proveedor"=>$_POST['proveedor'],
             "Factura"=>$_POST['factura'],
-            "Fecha"=>$fecha,
+            "Fecha"=>$_POST['fecha'],//$fecha,
             "Iva"=>$iva,
             "Activo"=>$activo,
             "Facturado"=>false
@@ -62,7 +62,7 @@ class productController{
             $activo=false;
         }
 
-        $fecha= DateTime::createFromFormat('m/d/Y', $_POST['fecha'])->format('Y-m-d');
+        //$fecha= DateTime::createFromFormat('m/d/Y', $_POST['fecha'])->format('Y-m-d');
       
         $data=array(
             "Descripcion"=>$_POST['descripcion'],
@@ -72,7 +72,7 @@ class productController{
             "Gastos"=>$_POST['gastos'],
             "Proveedor"=>$_POST['proveedor'],
             "Factura"=>$_POST['factura'],
-            "Fecha"=>$fecha,
+            "Fecha"=>$_POST['fecha'],//$fecha,
             "Iva"=>$iva,
             "Activo"=>$activo,
             "Facturado"=>false
