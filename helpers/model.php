@@ -2,49 +2,7 @@
 
 class Model {
 
-    /*
-
-        ------Insertar datos--------------
-
-        $data=array(
-            "" => "",
-            "" => 1,
-            "" => $_POST["id"]
-        );
-
-        Model::insert($table,$data);
-
-        ---------obtener datos------------
-
-        $table="tabla";
-        $id=valor;
-
-        Model::getall($table);
-        Model::getByID($table,$id);
-
-        $sql="select * from tabla where campo=valor and campo2={$variable}";
-        Model::getBySql($sql);
-        
-        find($table, $conditions = ["campo" =>valor, "campo" => valor2], $limit = null)
-
-
-        ------modificar datos--------------
-
-        $data=array(
-            "" => "",
-            "" => 1,
-            "" => $_POST["id"]
-        );
-
-        Model::update($table,$data,$id);
-
-        ------eliminar------
-        Model::delete($table,$id);
-
-    */ 
-
-
-   public static function getAll($table){
+    public static function getAll($table){
         $sql="SELECT * FROM {$table}";
 		$stmt=Connection::connect()->prepare($sql);
         $stmt -> execute();
@@ -131,6 +89,16 @@ class Model {
 
     }
 
+
+    public static function getBySqlFirst($sql){
+
+        $cn=Connection::connect();
+		$stmt=$cn->prepare($sql);
+              
+        $stmt -> execute();
+
+		return $stmt -> fetch(PDO::FETCH_ASSOC);
+    }
 
     public static function getBySql($sql){
 

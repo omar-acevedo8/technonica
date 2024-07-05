@@ -10,7 +10,7 @@
 
   <div class="card card-primary card-outline">
     <div class="card-header">
-      <a class="btn bg-primary" href="addproduct" >Agregar producto</a>
+      <a class="btn btn-primary " href="addproduct" >Agregar producto</a>
     </div>
     <div class="card-body">
 
@@ -25,27 +25,34 @@
                         <th></th>
                       </tr>
                   </thead>
-                
-                
+                 
               <?php
 
                   $result=productController::getAll();
 
                   foreach($result as $key=>$value){
-                    
+                   
+                    $value["Activo"] ? $activo='<span class="badge bg-success">Activo</span>' : $activo='<span class="badge bg-secondary">Inactivo</span>';
+                  
                   echo '<tr>
                     <td>'.$value["Descripcion"].'</td>
                     <td>'.$value["Proveedor"].'</td>
                     <td>'.$value["Serie"].'</td>
                     <td>'.$value["Costo"].'</td>
-                    <td>'.$value["Activo"].'</td>
+                    <td>'.$activo.'</td>
                     <td>
-                        <form action="editproduct" method="post">
-                          <input type="hidden" name="id" value='.$value["Id"].'>
-                          <button type="submit" class="btn btn-primary"> 
-                          <i class="fas fa-pen"></i>
+
+                          <a class="btn btn-warning btn-sm text-white" href="./index.php?p=editproduct&id='.$value["Id"].'"> 
+                             <i class="fas fa-pen"></i>
+                          </a>
+
+                       
+                           <button class="btn btn-danger btn-sm delete" data-id='.$value["Id"].'> 
+                             <i class="fas fa-trash"></i>
                           </button>
                           </form>
+                         
+
                     </td>
                     </tr>';
                   }
@@ -94,6 +101,30 @@
     });
 
   });
+
+
+  $('#tabla').on('click','.delete',function(){
+
+    let eliminar=confirm('Esta seguro desea eliminar este registro');
+    let id=$(this).attr("data-id");
+
+    if(eliminar){
+      
+      $.ajax({
+
+        url: "./ajax/ajax.php",
+        method: "POST",
+        data: {"id": id, "endpoint" : "eliminarProducto"},
+        success: function(response){
+          if(response=='ok'){
+            window.location.href = "./index.php?p=products";
+          }
+        }
+
+      });
+    }
+
+});
 
 </script>
 

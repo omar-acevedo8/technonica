@@ -31,6 +31,33 @@ class userModel{
     }
 
 
+    public static function create($data){
+
+        return Model::executeSql("INSERT INTO usuario (
+                                
+                                                        Nombre,
+                                                        Mostrar,
+                                                        Clave,
+                                                        Rol,
+                                                        Activo)
+                                                VALUES (
+                                                        '{$data['Nombre']}',
+                                                        '{$data['Mostrar']}',
+                                                        '{$data['Clave']}',
+                                                        '{$data['Rol']}',
+                                                        true
+                                                        )");
+
+    }
+
+    public static function delete($id){
+
+        $sql="DELETE FROM usuario 
+              WHERE Id={$id}";
+              
+        return Model::executeSql($sql);
+    }
+
 
 }
 

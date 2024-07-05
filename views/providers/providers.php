@@ -16,9 +16,9 @@
 <section class="content">
 <div class="container-fluid">
 
-  <div class="card card-lightblue card-outline">
+  <div class="card card-primary card-outline">
     <div class="card-header">
-    <h6 class="m-0 font-weight-bold">Lista de proveedores <button class="btn bg-lightblue" id="add" data-toggle="modal" data-target="#modal">Agregar</button></h6>
+    <button class="btn bg-primary" id="add" data-toggle="modal" data-target="#modal">Agregar proveedor</button>
     </div>
     <div class="card-body">
 
@@ -48,8 +48,11 @@
                     <td>'.$value["Telefono"].'</td>
                     <td>'.$value["Contacto"].'</td>
                     <td>
-                        <button id="edit" class="btn btn-primary" data-toggle="modal" data-target="#modal" key='.$value["Id"].'> 
+                        <button id="edit" class="btn btn-warning text-white btn-sm" data-toggle="modal" data-target="#modal" key='.$value["Id"].'> 
                         <i class="fas fa-pen"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm delete" data-id='.$value["Id"].'> 
+                        <i class="fas fa-trash"></i>
                         </button>
                     </td>
                     </tr>';
@@ -122,7 +125,7 @@
       </div>
       <div class="modal-footer">
         <input type="submit" class="btn btn-primary" value="Guardar">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
       </div>
 
       </form>
@@ -212,6 +215,31 @@ $.ajax({
  
 
 });
+
+
+$('#tabla').on('click','.delete',function(){
+
+let eliminar=confirm('Esta seguro desea eliminar este registro');
+let id=$(this).attr("data-id");
+
+if(eliminar){
+  
+  $.ajax({
+
+    url: "./ajax/ajax.php",
+    method: "POST",
+    data: {"id": id, "endpoint" : "eliminarProveedor"},
+    success: function(response){
+      if(response=='ok'){
+        window.location.href = "./index.php?p=providers";
+      }
+    }
+
+  });
+}
+
+});
+
 
 
 </script>

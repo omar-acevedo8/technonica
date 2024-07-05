@@ -4,11 +4,6 @@ require_once "./models/productmodel.php";
 
 class productController{
 
-    public static function All(){
-
-        return productModel::All();
-    }
-
     public static function getAll(){
         return Model::getBySql("SELECT producto.Descripcion as Descripcion,
                                      proveedor.Nombre as Proveedor,
@@ -21,6 +16,21 @@ class productController{
     }
 
     public static function create(){
+
+        if($_POST['iva']){
+            $iva=$_POST['costo']*0.15;
+        }else{
+            $iva=0;
+        }
+
+        if(isset($_POST['activo'])){
+            $activo=true;
+        }else{
+            $activo=false;
+        }
+
+        $fecha= DateTime::createFromFormat('m/d/Y', $_POST['fecha'])->format('Y-m-d');
+      
         $data=array(
             "Descripcion"=>$_POST['descripcion'],
             "Serie"=>$_POST['serie'],
@@ -29,37 +39,57 @@ class productController{
             "Gastos"=>$_POST['gastos'],
             "Proveedor"=>$_POST['proveedor'],
             "Factura"=>$_POST['factura'],
-            "Fecha"=>$_POST['fecha'],
-            "Iva"=>$_POST['iva'],
-            "Activo"=>false,
+            "Fecha"=>$fecha,
+            "Iva"=>$iva,
+            "Activo"=>$activo,
             "Facturado"=>false
         );
-
-        return productModel::Save($data);
+    
+        return productModel::guardarProducto($data);
     }
 
+     public static function update(){
+
+        if($_POST['iva']){
+            $iva=$_POST['costo']*0.15;
+        }else{
+            $iva=0;
+        }
+
+        if(isset($_POST['activo'])){
+            $activo=true;
+        }else{
+            $activo=false;
+        }
+
+        $fecha= DateTime::createFromFormat('m/d/Y', $_POST['fecha'])->format('Y-m-d');
+      
+        $data=array(
+            "Descripcion"=>$_POST['descripcion'],
+            "Serie"=>$_POST['serie'],
+            "Costo"=>$_POST['costo'],
+            "Precio"=>$_POST['precio'],
+            "Gastos"=>$_POST['gastos'],
+            "Proveedor"=>$_POST['proveedor'],
+            "Factura"=>$_POST['factura'],
+            "Fecha"=>$fecha,
+            "Iva"=>$iva,
+            "Activo"=>$activo,
+            "Facturado"=>false
+        );
+    
+        return productModel::modificarProducto($data,$_POST['id']); 
+      
+    }
+
+    public static function All(){
+
+        return productModel::All();
+    }
+     
     public static function find($id){
 
         return productModel::find($id);
-    }
-
-    public static function update(){
-
-        $data=array(
-            "Descripcion"=>$_POST['descripcion'],
-            "Serie"=>$_POST['serie'],
-            "Costo"=>$_POST['costo'],
-            "Precio"=>$_POST['precio'],
-            "Gastos"=>$_POST['gastos'],
-            "Proveedor"=>$_POST['proveedor'],
-            "Factura"=>$_POST['factura'],
-            "Fecha"=>$_POST['fecha'],
-            "Iva"=>$_POST['iva'],
-            "Activo"=>false,
-            "Facturado"=>false
-        );
-
-        return productModel::update($data,$_POST['key']);
     }
 }
 

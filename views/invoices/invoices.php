@@ -2,9 +2,9 @@
 <section class="content">
 <div class="container-fluid">
 
-  <div class="card card-lightblue card-outline">
+  <div class="card card-primary card-outline">
     <div class="card-header">
-      <a class="btn bg-lightblue" href="addinvoice" >Nueva factura</a>
+      <a class="btn btn-primary" href="addinvoice" >Nueva factura</a>
     </div>
     <div class="card-body">
 

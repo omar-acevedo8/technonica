@@ -29,14 +29,18 @@ if(isset($_POST['user'])){
 
 
 <body class="hold-transition login-page">
+
+<img src="./assets/img/logo.jpg" class=" img-rounded" width=200px height=70px>
+<br>
 <div class="login-box">
 
-<div class="card card-outline card-lightblue">
-<div class="card-header text-center">
-    <img src="./assets/img/logo.jpg" class=" img-rounded" width=200px height=70px>
-</div>
+
+
+<div class="card card-outline card-primary">
+
 <div class="card-body">
 
+<br>
 
 <form action="login" method="post">
 <div class="input-group mb-3">
@@ -61,7 +65,7 @@ if(isset($_POST['user'])){
 </div>
 
 <div class="col-4">
-<button type="submit" class="btn bg-lightblue btn-block">Ingresar</button>
+<button type="submit" class="btn btn-primary btn-block">Ingresar</button>
 </div>
 
 </div>

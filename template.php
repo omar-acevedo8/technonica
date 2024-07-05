@@ -50,6 +50,15 @@
 <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
 
+<!--number spinner -->
+ <!-- Bootstrap TouchSpin CSS -->
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.3.0/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+    <!-- Bootstrap TouchSpin JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.3.0/jquery.bootstrap-touchspin.min.js"></script>
+
+    <script src="./assets/js/bootstrap-switch.js" ></script>
+
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
 <!--<body class="hold-transition sidebar-mini layout-fixed">-->

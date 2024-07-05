@@ -7,6 +7,7 @@ class userController{
     public static function logIn(){
 
         $resultTemp=userModel::findByUserName($_POST['user']);
+
         if(!empty($resultTemp)){
             $result=$resultTemp[0];
         
@@ -34,7 +35,36 @@ class userController{
         return userModel::All();
     }
 
+    public static function create(){
+
+        $data=array(
+            "Nombre" => $_POST["usuario"],
+            "Mostrar" => $_POST["nombre"],
+            "Clave" => $_POST["password"],
+            "Rol" => $_POST["rol"],
+         );
+
+         return userModel::create($data);
+    }
+
     
+    public static function edit(){
+     
+        $data=array(
+            "Nombre" => $_POST["usuario"],
+            "Mostrar" => $_POST["nombre"],
+            "Clave" => $_POST["password"],
+            "Rol" => $_POST["rol"],
+         );
+
+         return userModel::update($data,$_POST["id"]);
+    }
+
+
+    public static function delete(){
+
+        return userModel::delete($_POST["id"]);
+    }
 }
 
 ?>

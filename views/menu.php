@@ -6,8 +6,8 @@
 <!--<a href="index3.html" class="brand-link bg-lightblue img-fluid">-->
 <a href="index3.html" class="brand-link sidebar-dark-primary img-fluid">
 <!--<a href="index3.html" class="brand-link bg-primary img-fluid">-->  
-<img src="./assets/img/logo.jpg" alt="AdminLTE Logo" class="brand-image img-rounded elevation-3" style="opacity: .8">
-<span class="brand-text font-weight-light">&nbsp</span>
+
+<span class=" font-weight-Bold">MENU</span>
 </a>
 
 <div class="sidebar">

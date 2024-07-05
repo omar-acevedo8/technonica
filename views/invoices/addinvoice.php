@@ -63,7 +63,6 @@
       </div>
 
     </div>
-    
 
     <div class="row">
 
@@ -75,7 +74,8 @@
                         <th width="100px"></th>
                         <th width="300px">Cantidad</th>
                         <th>Descripcion</th>
-                        <th>Precio</th>
+                        <th>Precio C$</th>
+                        <th>Precio $</th>
                         <th>Total</th>
                     </tr>
                 </thead>
@@ -110,8 +110,8 @@
 
     </div>
     <div class="card-footer">
-      <button class="btn bg-primary"> Guardar</button>
-      <button class="btn btn-secondary"> Cancelar</button>
+      <button class="btn bg-primary" id="guardar"> Guardar</button>
+      <button class="btn btn-danger"> Cancelar</button>
     </div>
 </div>
     
@@ -147,7 +147,8 @@ function getTotal(){
 let total=0;
       $('#tabla tr').each(function(){
           $(this).find('.total').each(function (){
-              total=total+ parseFloat($(this).find('.t').text());
+            total=parseFloat(total)+ parseFloat($(this).find('.t').text());
+              
           });
      });
      $('#subtotal').val(total.toFixed(2));
@@ -164,20 +165,36 @@ $("#detalle").append(
         <i class="fas fa-trash"></i>
       </button>
     </td>
-    <td name="Cantidad">
+    <td> 
 
-        <div class="input-group m-0">
-          <div class="input-group-prepend">
+      <center>
+        <div class="input-group" style="width:120px">
             <button class="btn btn-secondary btn-sm restar" type="button">-</button>
-            <input type="text" class="form-control qty" value="1" readonly>  
-          </div>
-          <button class="btn btn-secondary btn-sm sumar" type="button">+</button>
+            <input type="text" class="form-control qty" value="1" readonly >  
+            <button class="btn btn-secondary btn-sm sumar" type="button">+</button>
         </div>
+      </center>
 
     </td>
     <td name="Descripcion" >Computadora de escritorio</td>
-    <td name="Precio" class="precio"><span>$</span><span class="p">550<span></td>
-    <td name="Total" class="total"><span>$</span><span class="t">550<span></td>
+    <td name="Precio" class="precio">
+
+      <span>$</span>
+      <span class="pd">550<span>
+
+    </td>
+    <td name="Precio" class="precio">
+
+      <span>C$</span>
+      <span class="p">550<span>
+
+    </td>
+    <td name="Total" class="total">
+
+      <span>$</span>
+      <span class="t">550<span>
+
+    </td>
     </tr> `
 );
 
@@ -213,13 +230,73 @@ $("#detalle").on("click","button.restar",function(){
 
 $("#detalle").on("click","button.sumar",function(){
 
-  let qty=$(this).siblings().find('.qty').val();
+  let qty=$(this).siblings('.qty').val();
   qty=parseInt(qty)+1;  
-  $(this).siblings().find('.qty').val(qty);
+  $(this).siblings('.qty').val(qty);
 
-  setUnitPrice(qty,$(this));
+  setUnitPrice(parseFloat(qty),$(this).parent());
 
   getTotal();
+});
+
+
+$("#guardar").click(function(){
+
+  let master=[];
+  let detail=[];
+
+  let factura;
+  let cambio;
+  let tipo;
+  let vencimiento;
+  let cliente;
+  let subtotal;
+  let iva;
+  let total;
+  let usuario;
+
+  $.ajax({
+    url: "./ajax/ajax.php",
+    method: "POST",
+    data: {"endpoint": "consecutivoFactura"},
+    dataType: "json",
+    success: function(response){
+
+          factura=response.Factura;
+          cambio=response.TipoCambio;
+
+          cliente=$('#cliente option:selected').val();
+          subtotal=$('#subtotal').val();
+          iva=$('#iva').val();
+          total=$('#total').val();
+          pagada=true;
+          tipo=$('#tipo option:selected').val();
+          if(tipo=="Credito"){
+            vencimiento=$("#datepicker").val();
+            pagada=false;
+          }
+          
+          usuario="<?php echo $_SESSION["nombre"]; ?>";
+
+          master.push({
+            "factura":factura,
+            "cliente":cliente,
+            "tipo": tipo,
+            "vencimiento":vencimiento,
+            "subtotal":subtotal,
+            "iva":iva,
+            "pagada": pagada,
+            "usuario": usuario
+          });
+
+
+          //var url = "./views/invoices/invoicepdf.php";
+          //window.open(url,'_blank');
+
+
+        }
+  });
+
 });
 
 </script>
