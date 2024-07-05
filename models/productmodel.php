@@ -17,7 +17,7 @@ class productModel{
             Activo
             ) VALUES (?,?,?,?,?,?,?,?,?,1)";
 
-        unset($data['Activo']);
+        //unset($data['Activo']);
 
         $cn=Connection::connect();
         $stmt=$cn->prepare($sql);
