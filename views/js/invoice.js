@@ -247,7 +247,7 @@ let rowCount=$('#tabla tbody tr').length;
               method: "POST",
               data: {"master": JSON.stringify(master),"detail":JSON.stringify(detail),"endpoint":"guardarFactura"},
               success: function(response){
-                  //let comment=$('#comment').val();
+                  
                   var url = "./views/invoices/invoicepdf.php?f="+master[0].factura;
                   window.open(url,'_blank');
       
