@@ -42,7 +42,7 @@
                             <td>{$value['Total']}</td>
                             <th>
                             <center>
-                                <button class='btn btn-danger btn-sm'>Anular</button>
+                                <button data-id={$value['Factura']} class='btn btn-danger btn-sm eliminar'>Anular</button>
                             </center>
                             </th>
                           </tr>";
@@ -65,6 +65,7 @@ $(document).ready(function(){
 
     $('#tabla').DataTable({
         responsive: true,
+        order: [[1, 'desc']],
         "language": {
 
             "sProcessing":     "Procesando...",
@@ -93,4 +94,26 @@ $(document).ready(function(){
 
 });
 
+
+$("#tabla").on('click','.eliminar',function(){
+  let id=$(this).attr('data-id');
+
+  let eliminar=confirm('Esta seguro desea anular esta factura');
+
+  if(eliminar){
+  
+  $.ajax({
+
+    url: "./ajax/ajax.php",
+    method: "POST",
+    data: {"id": id, "endpoint" : "anularFactura"},
+    success: function(response){
+      if(response=='ok'){
+        window.location.href = "./index.php?p=invoices";
+      }
+    }
+
+  });
+}
+});
 </script>

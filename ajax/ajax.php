@@ -27,7 +27,7 @@ if(isset($_POST["endpoint"]) &&  $_POST["endpoint"]=="user"){
 if(isset($_POST["endpoint"]) &&  $_POST["endpoint"]=="consecutivoFactura"){
     
     $result=Model::getBySQLFirst("SELECT * FROM empresa WHERE Id=1");
-   // Model::executeSql("UPDATE empresa SET factura=factura+1 WHERE Id=1");
+    Model::executeSql("UPDATE empresa SET factura=factura+1 WHERE Id=1");
     echo json_encode($result);
 }
 
@@ -63,6 +63,14 @@ if(isset($_POST["endpoint"]) &&  $_POST["endpoint"]=="obtenerProducto"){
                             WHERE Id={$_POST['id']} AND Activo=1 AND Facturado=False");
     echo json_encode($result[0]);
 }
+
+if(isset($_POST["endpoint"]) &&  $_POST["endpoint"]=="anularFactura"){
+    
+    echo Model::executeSql("DELETE FROM factura 
+                            WHERE Id={$_POST['id']}");
+}
+
+
 
 
 ?>

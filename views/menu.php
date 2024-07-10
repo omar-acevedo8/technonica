@@ -119,19 +119,19 @@ Dashboard
         </a>
         <ul class="nav nav-treeview" >
         <li class="nav-item">
-        <a href="./index.html" class="nav-link">
+        <a href="sales" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>Ventas</p>
         </a>
         </li>
         <li class="nav-item">
-        <a href="./index2.html" class="nav-link">
+        <a href="purchases" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>Compras</p>
         </a>
         </li>
         <li class="nav-item">
-        <a href="./index3.html" class="nav-link">
+        <a href="credits" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>Facturas de Credito</p>
         </a>

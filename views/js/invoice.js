@@ -211,7 +211,7 @@ $("#guardar").click(function(){
                 "PrecioCordoba": prec
             });
           });
-          console.log(master);
+          
           $.ajax({
             url: "./ajax/ajax2.php",
             method: "POST",

@@ -9,8 +9,10 @@
         'invoices'=>'invoices/invoices',
         'addproduct'=>'products/addproduct',
         'editproduct'=>'products/editproduct',
-        'addinvoice'=>'invoices/addinvoice'
-        
+        'addinvoice'=>'invoices/addinvoice',
+        "sales"=>"reports/sales",
+        "purchases"=>"reports/purchases",
+        "credits"=>"reports/credit"
     );
 
 
