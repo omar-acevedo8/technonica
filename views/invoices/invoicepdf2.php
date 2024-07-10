@@ -18,12 +18,12 @@ require "../../helpers/model.php";
                                               FROM factura,cliente
                                               WHERE cliente.Id=factura.Cliente AND factura.Id={$f}");
 
-        $detalle=Model::getBySql("SELECT Descripcion,Cantidad,PrecioCordoba as Precio
+        $detalle=Model::getBySql("SELECT Descripcion,Cantidad,Precio
                                 FROM facturaproducto
                                 WHERE factura={$f}");
 
       $comentario=$factura['Comentario'];
-      $moneda="<span>C$<span>";
+      $moneda="<span>$<span>";
 
       
 ob_start();
@@ -267,15 +267,15 @@ ob_start();
     <table  class="table tbl-border table-sm ">
         <tr>
             <td style="text-align:right"></td>
-            <td width="100px" style="text-align:right"><span>C$</span><span> <?= $factura['Subtotal']?></span></td>
+            <td width="100px" style="text-align:right"><span>$</span><span> <?= number_format($factura['Subtotal']/36.62,2)?></span></td>
         </tr>
         <tr>
         <td style="text-align:right"></td>
-            <td width="100px" style="text-align:right"><span>C$</span><span> <?= $factura['Iva']?></span></td>
+            <td width="100px" style="text-align:right"><span>$</span><span> <?= number_format($factura['Iva']/36.62,2)?></span></td>
         </tr>
         <tr>
         <td style="text-align:right"></td>
-            <td width="100px" style="text-align:right"><span>C$</span><span> <?= $factura['Total']?></span></td>
+            <td width="100px" style="text-align:right"><span>$</span><span> <?=number_format($factura['Total']/36.62,2)?></span></td>
         </tr>
     </table>
 

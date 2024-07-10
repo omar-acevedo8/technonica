@@ -17,7 +17,8 @@ class invoiceController{
             "Subtotal"=>$maestro['subtotal'],
             "Iva"=>$maestro['iva'],
             "Pagada"=>$pagada,
-            "Usuario"=>$maestro['usuario']
+            "Usuario"=>$maestro['usuario'],
+            "Comentario"=>$maestro['comentario']
         );
 
         if(invoiceModel::guardarFactura($data)=='ok'){

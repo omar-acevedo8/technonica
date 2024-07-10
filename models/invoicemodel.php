@@ -12,8 +12,9 @@ class invoiceModel{
             Subtotal,
             Iva,
             Pagada,
-            Usuario
-            ) VALUES (?,?,?,?,?,?,?,{$data['Pagada']},?)";
+            Usuario,
+            Comentario
+            ) VALUES (?,?,?,?,?,?,?,{$data['Pagada']},?,?)";
         
         unset($data['Pagada']);
 
@@ -61,9 +62,9 @@ class invoiceModel{
             factura.Subtotal as SubTotal,
             factura.Iva as Iva,
             TRUNCATE((factura.Subtotal + factura.Iva),2) as Total
-         FROM factura,cliente
-         WHERE cliente.Id=factura.Cliente
-         ORDER BY factura.Id DESC";
+            FROM factura,cliente
+            WHERE cliente.Id=factura.Cliente
+            ORDER BY factura.Id DESC";
 
         $stmt=Connection::connect()->prepare($sql);
         $stmt -> execute();

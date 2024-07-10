@@ -88,6 +88,7 @@ $total = 0.00;
                   $datetime = new datetime($value['Fecha']);
                   $fecha = $datetime->format('y-m-d');
 
+
                   echo "<tr>
                         <td>{$fecha}</td>
                         <td>{$value['Proveedor']}</td>

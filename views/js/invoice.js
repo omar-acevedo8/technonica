@@ -43,7 +43,8 @@ $("#agregarProducto").on("click",function(){
       data: {"id": id, "endpoint" : "obtenerProducto"},
       dataType: "json",
       success: function(response){
-        
+        let rowCount=$('#tabla tbody tr').length;
+        if(rowCount<=9){
         $("#detalle").append(
               `<tr class="d">
                 <td name="boton">
@@ -83,11 +84,12 @@ $("#agregarProducto").on("click",function(){
                 </td>
               </tr> `
           );
-
+        }
       getTotal();
       }
 
   });
+
 
 });
 
@@ -142,7 +144,30 @@ $('#tipo').change(function(){
 });
 
 
+
+$('#datepicker').on('change',function() {
+  // Obtener la fecha seleccionada
+  
+  var selectedDate = $("input").val(); 
+  var tmp2=new Date(selectedDate);
+  var tmp=new Date();
+  
+
+ 
+ 
+  if (tmp2 < tmp) {
+    alert('si la factura es de credito la fecha de vencimiento no puede ser menor o igual a la fecha de hoy');
+    
+    var fecha=tmp.getFullYear()+'-'+(tmp.getMonth()+1)+'-'+(tmp.getDate()+1);
+  
+    $("#datepicker").val(fecha);
+  }
+});
+
+
 $("#guardar").click(function(){
+let rowCount=$('#tabla tbody tr').length;
+ if(rowCount>0){
 
   let master=[];
   let detail=[];
@@ -156,6 +181,7 @@ $("#guardar").click(function(){
   let iva;
   let total;
   let usuario;
+  let Comentario;
 
   $.ajax({
     url: "./ajax/ajax.php",
@@ -164,76 +190,82 @@ $("#guardar").click(function(){
     dataType: "json",
     success: function(response){
 
-          factura=response.Factura;
-          cambio=response.TipoCambio;
+      
 
-          cliente=$('#cliente option:selected').val();
-          subtotal=$('#subtotal').val();
-          iva=$('#iva').val();
-          total=$('#total').val();
-          pagada=true;
+            factura=response.Factura;
+            cambio=response.TipoCambio;
 
-          var tmp=new Date();
-          var fecha=tmp.getFullYear()+'-'+(tmp.getMonth()+1)+'-'+tmp.getDate();
-          vencimiento=fecha;
-          tipo=$('#tipo option:selected').val();
-          if(tipo=="Credito"){
-            vencimiento=$("#datepicker").val();
-            pagada=false;
-          }
-          
-          usuario=$('#usuario').val();
+            cliente=$('#cliente option:selected').val();
+            subtotal=$('#subtotal').val();
+            iva=$('#iva').val();
+            total=$('#total').val();
+            pagada=true;
 
-          master.push({
-            "factura":factura,
-            "cliente":cliente,
-            "tipo": tipo,
-            "vencimiento":vencimiento,
-            "subtotal":subtotal,
-            "iva":iva,
-            "pagada": pagada,
-            "usuario": usuario
-          });
-
-          let tr=$('#tabla tr.d');
-          tr.each(function(){
-            qty=$(this).find('.qty').val();
-            pid=$(this).find('.desc').attr('data-id');
-            desc=$(this).find('.desc').text();
-            pred=$(this).find('.pred').text();
-            prec=$(this).find('.prec').text()
-            
-            detail.push({     
-                "Producto": pid,
-                "Descripcion": desc,
-                "Cantidad": qty,
-                "Precio": pred,
-                "PrecioCordoba": prec
-            });
-          });
-          
-          $.ajax({
-            url: "./ajax/ajax2.php",
-            method: "POST",
-            data: {"master": JSON.stringify(master),"detail":JSON.stringify(detail),"endpoint":"guardarFactura"},
-            success: function(response){
-                console.log(response);
-                 //var url = "./views/invoices/invoicepdf.php";
-                 //window.open(url,'_blank');
-    
-                setTimeout(function() {
-                   window.location.href = "./index.php?p=invoices";
-                 }, 1000); 
-    
+            var tmp=new Date();
+            var fecha=tmp.getFullYear()+'-'+(tmp.getMonth()+1)+'-'+tmp.getDate();
+            vencimiento=fecha;
+            tipo=$('#tipo option:selected').val();
+            if(tipo=="Credito"){
+              vencimiento=$("#datepicker").val();
+              pagada=false;
             }
-        });
-    
+            
+            usuario=$('#usuario').val();
+            comentario=$('#comment').val();
 
-           
-         
+            master.push({
+              "factura":factura,
+              "cliente":cliente,
+              "tipo": tipo,
+              "vencimiento":vencimiento,
+              "subtotal":subtotal,
+              "iva":iva,
+              "pagada": pagada,
+              "usuario": usuario,
+              "comentario": comentario
+            });
+
+            let tr=$('#tabla tr.d');
+            tr.each(function(){
+              qty=$(this).find('.qty').val();
+              pid=$(this).find('.desc').attr('data-id');
+              desc=$(this).find('.desc').text();
+              pred=$(this).find('.pred').text();
+              prec=$(this).find('.prec').text()
+              
+              detail.push({     
+                  "Producto": pid,
+                  "Descripcion": desc,
+                  "Cantidad": qty,
+                  "Precio": pred,
+                  "PrecioCordoba": prec
+              });
+            });
+            
+            $.ajax({
+              url: "./ajax/ajax2.php",
+              method: "POST",
+              data: {"master": JSON.stringify(master),"detail":JSON.stringify(detail),"endpoint":"guardarFactura"},
+              success: function(response){
+                  //let comment=$('#comment').val();
+                  var url = "./views/invoices/invoicepdf.php?f="+master[0].factura;
+                  window.open(url,'_blank');
+      
+                  setTimeout(function() {
+                    window.location.href = "./index.php?p=invoices";
+                  }, 1000); 
+      
+              }
+          });
+      
+
+            
+          
 
 
         }
-  });
-
+    });
+  }else{
+    alert('Ingrese al menos un producto a la factura');
+  }
 });

@@ -211,6 +211,7 @@ $total = 0.00;
 
     $('#tabla').DataTable({
         responsive: true,
+        order: [[1, 'desc']],
         "language": {
 
           "sProcessing": "Procesando...",

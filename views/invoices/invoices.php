@@ -42,7 +42,8 @@
                             <td>{$value['Total']}</td>
                             <th>
                             <center>
-                                <button data-id={$value['Factura']} class='btn btn-danger btn-sm eliminar'>Anular</button>
+                                <button data-id={$value['Factura']} class='btn btn-secondary btn-sm imprimir'><i class='fas fa-print'></i></button>
+                                <button data-id={$value['Factura']} class='btn btn-danger btn-sm eliminar'><i class='fas fa-trash'></i></button>
                             </center>
                             </th>
                           </tr>";
@@ -115,5 +116,12 @@ $("#tabla").on('click','.eliminar',function(){
 
   });
 }
+});
+
+
+$('#tabla').on('click','.imprimir',function(){
+  let id=$(this).attr('data-id');
+  var url = "./views/invoices/invoicepdf2.php?f="+id;
+  window.open(url,'_blank');
 });
 </script>

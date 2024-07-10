@@ -103,7 +103,11 @@ require_once "./controllers/productcontroller.php";
     </div>
 
     <div class="row">
-    <div class="col-md-9"></div>
+    <div class="col-md-9">
+            <label for="comentario">Comentario</label>
+            <textarea id="comment" class="form-control"  name="comentario" maxlength="117"></textarea>
+
+    </div>
     <div class="col-md-3">
       <table class="table table-sm table-bordered m-0 ">
         <tr>
