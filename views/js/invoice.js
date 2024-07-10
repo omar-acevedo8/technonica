@@ -146,7 +146,7 @@ $('#tipo').change(function(){
 
 
 $('#datepicker').on('change',function() {
-  // Obtener la fecha seleccionada
+ 
   
   var selectedDate = $("input").val(); 
   var tmp2=new Date(selectedDate);
